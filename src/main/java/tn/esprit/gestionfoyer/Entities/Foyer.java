@@ -6,6 +6,7 @@ import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -28,7 +29,7 @@ public class Foyer {
     @JsonIgnore
     Universite universite;
 
-    @OneToMany(mappedBy = "foyer", cascade={CascadeType.PERSIST, CascadeType.REMOVE}, fetch = FetchType.EAGER)
-    Set<Bloc> blocs;
+    @OneToMany(mappedBy = "foyer")
+    List<Bloc> blocs;
 
 }

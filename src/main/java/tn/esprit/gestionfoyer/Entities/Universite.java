@@ -26,7 +26,6 @@ public class Universite  {
 
 
     @OneToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "idFoyer")
     @JsonIgnore
     Foyer foyer;
 

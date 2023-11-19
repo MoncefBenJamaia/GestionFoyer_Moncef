@@ -10,6 +10,7 @@ import tn.esprit.gestionfoyer.Services.IReservationServices;
 
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -49,9 +50,9 @@ public class IReservationServicesImp implements IReservationServices {
         // Création de la réservation
         Reservation reservation = new Reservation();
         assert chambre != null;
-        reservation.setNumReservation(chambre.getNumeroChambre() +"-"+ chambre.getBloc().getNomBloc().replace(" ", "") +"-"+ cin);
-        reservation.setDebutAnneeUniv(LocalDate.of(LocalDate.now().getYear(), 9, 1));
-        reservation.setFinAnneeUniv(LocalDate.of(LocalDate.now().getYear() + 1, 6, 1));
+        reservation.setIdReservation(chambre.getNumeroChambre() +"-"+ chambre.getBloc().getNomBloc().replace(" ", "") +"-"+ cin);
+        reservation.setAnneeUniversitaire(LocalDate.of(LocalDate.now().getYear(), 9, 1));
+
         reservation.setEstValide(true);
 
         // Déterminer la capacité maximale en fonction du type de chambre
@@ -71,7 +72,7 @@ public class IReservationServicesImp implements IReservationServices {
         }
 
         // Gérer la relation ManyToMany
-        Set<Etudiant> etudiants = new HashSet<>();
+        List<Etudiant> etudiants = new ArrayList<>();
         etudiants.add(etudiant);
         reservation.setEtudiants(etudiants);
 

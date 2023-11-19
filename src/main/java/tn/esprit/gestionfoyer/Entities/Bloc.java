@@ -6,6 +6,7 @@ import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -21,16 +22,16 @@ public class Bloc  {
     Long idBloc;
 
     String nomBloc;
+
     Long capaciteBloc;
 
 
     @ManyToOne
-    @JoinColumn(name = "idFoyer")
     @JsonIgnore
     Foyer foyer;
 
-    @OneToMany(mappedBy = "bloc", cascade={CascadeType.PERSIST, CascadeType.REMOVE}, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "bloc")
     @JsonIgnore
-    Set<Chambre> chambres;
+    List<Chambre> chambres;
 
 }

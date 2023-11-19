@@ -6,6 +6,7 @@ import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -19,6 +20,9 @@ public class Etudiant {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idEtudiant;
 
+    String nomEt;
+    String prenomEt;
+
     @Column(unique=true)
     Long cin;
 
@@ -30,6 +34,6 @@ public class Etudiant {
 
     @ManyToMany(mappedBy="etudiants")
     @JsonIgnore
-    Set<Reservation> reservations;
+    List<Reservation> reservations;
 
 }

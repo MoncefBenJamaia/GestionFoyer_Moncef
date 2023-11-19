@@ -6,6 +6,7 @@ import lombok.experimental.FieldDefaults;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -17,21 +18,17 @@ import java.util.Set;
 public class Reservation {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long idReservation;
+    String idReservation;
 
-    String numReservation;
 
     @Temporal(TemporalType.DATE)
-    LocalDate debutAnneeUniv;
+    LocalDate AnneeUniversitaire;
 
-    @Temporal(TemporalType.DATE)
-    LocalDate finAnneeUniv;
 
     boolean estValide;
 
 
     @ManyToMany
-    Set<Etudiant> etudiants;
+    List<Etudiant> etudiants;
 
 }

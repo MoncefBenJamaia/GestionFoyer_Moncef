@@ -6,6 +6,7 @@ import lombok.experimental.FieldDefaults;
 import tn.esprit.gestionfoyer.Entities.Enum.TypeChambre;
 
 
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -27,9 +28,8 @@ public class Chambre {
 
 
     @ManyToOne
-    @JoinColumn(name = "idBloc")
     Bloc bloc;
 
     @OneToMany
-    Set<Reservation> reservations;
+    List<Reservation> reservations;
 }
