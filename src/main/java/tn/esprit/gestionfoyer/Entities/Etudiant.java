@@ -19,19 +19,14 @@ public class Etudiant {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idEtudiant;
-
     String nomEt;
     String prenomEt;
-
     @Column(unique=true)
     Long cin;
-
     String ecole;
-
     @Temporal(TemporalType.DATE)
     LocalDate dateNaissance;
-
-
+    
     @ManyToMany(mappedBy="etudiants")
     @JsonIgnore
     List<Reservation> reservations;

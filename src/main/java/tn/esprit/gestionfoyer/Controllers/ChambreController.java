@@ -10,34 +10,34 @@ import tn.esprit.gestionfoyer.Services.IChambreServices;
 import java.util.List;
 
 @RestController
-@RequestMapping("/chambre")
+@RequestMapping("chambre")
 @RequiredArgsConstructor
 public class ChambreController {
 
     private final IChambreServices chambreService;
 
-    @PostMapping("/add")
+    @PostMapping()
     public Chambre addChambre(@RequestBody Chambre chambre) {
         return chambreService.addChambre(chambre);
     }
 
-    @PutMapping("/update")
+    @PutMapping()
     public Chambre updateChambre(@RequestBody Chambre chambre) {
         return chambreService.updateChambre(chambre);
     }
 
-    @GetMapping("/all")
+    @GetMapping()
     public List<Chambre> getAllChambres() {
         return chambreService.getAllChambres();
     }
 
-    @GetMapping("/{idChambre}")
+    @GetMapping("{idChambre}")
     public Chambre getChambreById(@PathVariable Long idChambre) {
         return chambreService.getChambreById(idChambre);
     }
 
 
-    @GetMapping("/getChambresParBlocEtType/{idBloc}/{typeC}")
+    @GetMapping("{idBloc}/{typeC}")
     public List<Chambre> getChambresParBlocEtType(@PathVariable Long idBloc, @PathVariable TypeChambre typeC) {
         return chambreService.getChambresParBlocEtType(idBloc, typeC);
     }

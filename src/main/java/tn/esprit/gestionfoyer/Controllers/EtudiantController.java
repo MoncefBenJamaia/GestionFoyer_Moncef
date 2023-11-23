@@ -9,33 +9,33 @@ import tn.esprit.gestionfoyer.Services.IEtudiantServices;
 import java.util.List;
 
 @RestController
-@RequestMapping("/etudiant")
+@RequestMapping("etudiant")
 @RequiredArgsConstructor
 public class EtudiantController {
 
     private final IEtudiantServices etudiantService;
 
-    @PostMapping("/add")
+    @PostMapping()
     public Etudiant addEtudiant(@RequestBody Etudiant etudiant) {
         return etudiantService.addEtudiant(etudiant);
     }
 
-    @PutMapping("/update")
+    @PutMapping()
     public Etudiant updateEtudiant(@RequestBody Etudiant etudiant) {
         return etudiantService.updateEtudiant(etudiant);
     }
 
-    @GetMapping("/all")
+    @GetMapping()
     public List<Etudiant> getAllEtudiants() {
         return etudiantService.getAllEtudiants();
     }
 
-    @GetMapping("/{idEtudiant}")
+    @GetMapping("{idEtudiant}")
     public Etudiant getEtudiantById(@PathVariable Long idEtudiant) {
         return etudiantService.getEtudiantById(idEtudiant);
     }
 
-    @DeleteMapping("/delete/{idEtudiant}")
+    @DeleteMapping("{idEtudiant}")
     public void deleteEtudiant(@PathVariable Long idEtudiant) {
         etudiantService.deleteEtudiant(idEtudiant);
     }

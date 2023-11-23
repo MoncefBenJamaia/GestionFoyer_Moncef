@@ -43,16 +43,15 @@ public class IReservationServicesImp implements IReservationServices {
 
     @Override
     public Reservation ajouterReservation (Long idChambre, Long cin)  {
-        Chambre chambre = chambreRepository.findById(idChambre).orElse(null);
+        Chambre chambre = chambreRepository.findById(idChambre).orElseThrow(()->new IllegalArgumentException("Cette chambre n'existe pas"));
 
         Etudiant etudiant = etudiantRepository.findByCin(cin);
 
         // Création de la réservation
         Reservation reservation = new Reservation();
         assert chambre != null;
-        reservation.setIdReservation(chambre.getNumeroChambre() +"-"+ chambre.getBloc().getNomBloc().replace(" ", "") +"-"+ cin);
-        reservation.setAnneeUniversitaire(LocalDate.of(LocalDate.now().getYear(), 9, 1));
-
+        reservation.setIdReservation(chambre.getNumeroChambre() +"-"+ chambre.getBloc().getNomBloc().replace(" ", "") +"-"+ cin+"-"+LocalDate.now().getYear());
+        reservation.setAnneeUniversitaire(LocalDate.now());
         reservation.setEstValide(true);
 
         // Déterminer la capacité maximale en fonction du type de chambre
@@ -66,7 +65,14 @@ public class IReservationServicesImp implements IReservationServices {
         }
 
         // Vérifier si la capacité maximale de la chambre est atteinte
-        long nombreReservations = chambre.getReservations().size();
+        List<Reservation> reservations=chambre.getReservations();
+        List<Reservation> reservationNow=new ArrayList<>();
+        for (Reservation r:reservations){
+            if (r.getAnneeUniversitaire().getYear()==LocalDate.now().getYear()){
+                reservationNow.add(r);
+            }
+        }
+        long nombreReservations = reservationNow.size();
         if (nombreReservations >= capaciteMax) {
             throw new IllegalStateException("La capacité maximale de la chambre est atteinte.");
         }

@@ -10,38 +10,38 @@ import tn.esprit.gestionfoyer.Services.IFoyerServices;
 import java.util.List;
 
 @RestController
-@RequestMapping("/foyer")
+@RequestMapping("foyer")
 @RequiredArgsConstructor
 public class FoyerController {
 
     private final IFoyerServices foyerService;
 
-    @PostMapping("/add")
+    @PostMapping()
     public Foyer addFoyer(@RequestBody Foyer foyer) {
         return foyerService.ajouterFoyer(foyer);
     }
 
-    @PostMapping("/add/{idUniversite}")
+    @PostMapping("{idUniversite}")
     public Foyer ajouterFoyerEtAffecterAUniversite(@RequestBody Foyer foyer, @PathVariable Long idUniversite) {
         return foyerService.ajouterFoyerEtAffecterAUniversite(foyer, idUniversite);
     }
 
-    @PutMapping("/update")
+    @PutMapping()
     public Foyer updateFoyer(@RequestBody Foyer foyer) {
         return foyerService.updateFoyer(foyer);
     }
 
-    @GetMapping("/all")
+    @GetMapping()
     public List<Foyer> getAllFoyers() {
         return foyerService.getAllFoyers();
     }
 
-    @GetMapping("/{idFoyer}")
+    @GetMapping("{idFoyer}")
     public Foyer getFoyerById(@PathVariable Long idFoyer) {
         return foyerService.getFoyerById(idFoyer);
     }
 
-    @DeleteMapping("/delete/{idFoyer}")
+    @DeleteMapping("{idFoyer}")
     public void deleteFoyer(@PathVariable Long idFoyer) {
         foyerService.deleteFoyer(idFoyer);
     }

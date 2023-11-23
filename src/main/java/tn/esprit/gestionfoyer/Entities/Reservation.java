@@ -18,6 +18,7 @@ import java.util.Set;
 public class Reservation {
 
     @Id
+    @Column(unique = true)
     String idReservation;
 
 

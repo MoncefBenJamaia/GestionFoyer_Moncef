@@ -8,35 +8,35 @@ import tn.esprit.gestionfoyer.Services.IReservationServices;
 import java.util.List;
 
 @RestController
-@RequestMapping("/reservation")
+@RequestMapping("reservation")
 @RequiredArgsConstructor
 public class ReservationController {
 
     private final IReservationServices reservationService;
 
 
-    @PutMapping("/update")
+    @PutMapping()
     public Reservation updateReservation(@RequestBody Reservation reservation) {
         return reservationService.updateReservation(reservation);
     }
 
-    @GetMapping("/all")
+    @GetMapping()
     public List<Reservation> getAllReservations() {
         return reservationService.getAllReservations();
     }
 
-    @GetMapping("/{idReservation}")
+    @GetMapping("{idReservation}")
     public Reservation getReservationById(@PathVariable String idReservation) {
         return reservationService.getReservationById(idReservation);
     }
 
 
-    @PostMapping("/add/{idChambre}/{cin}")
+    @PostMapping("{idChambre}/{cin}")
     public Reservation ajouterReservation(@PathVariable Long idChambre, @PathVariable Long cin) {
         return reservationService.ajouterReservation(idChambre, cin);
     }
 
-    @PutMapping("/annulerReservation/{cin}")
+    @PutMapping("{cin}")
     public Reservation annulerReservation(@PathVariable Long cin) {
         return reservationService.annulerReservation(cin);
     }

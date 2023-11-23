@@ -9,33 +9,33 @@ import tn.esprit.gestionfoyer.Services.IBlocServices;
 import java.util.List;
 
 @RestController
-@RequestMapping("/bloc")
+@RequestMapping("bloc")
 @RequiredArgsConstructor
 public class BlocController {
 
     private final IBlocServices blocService;
 
-    @PostMapping("/add")
+    @PostMapping()
     public Bloc addBloc(@RequestBody Bloc bloc) {
         return blocService.addBloc(bloc);
     }
 
-    @PutMapping("/update")
+    @PutMapping()
     public Bloc updateBloc(@RequestBody Bloc bloc) {
         return blocService.updateBloc(bloc);
     }
 
-    @GetMapping("/all")
+    @GetMapping()
     public List<Bloc> getAllBlocs() {
         return blocService.getAllBlocs();
     }
 
-    @GetMapping("/{idBloc}")
+    @GetMapping("{idBloc}")
     public Bloc getBlocById(@PathVariable Long idBloc) {
         return blocService.getBlocById(idBloc);
     }
 
-    @DeleteMapping("/delete/{idBloc}")
+    @DeleteMapping("{idBloc}")
     public void deleteBloc(@PathVariable Long idBloc) {
         blocService.deleteBloc(idBloc);
     }
@@ -45,7 +45,7 @@ public class BlocController {
     public Bloc affecterChambresABloc(@RequestBody List<Long> idChambre, @PathVariable Long idBloc) {
         return blocService.affecterChambresABloc(idChambre, idBloc);
     }
-    @PutMapping("/affecterBlocFoyer/{idBloc}/{idFoyer}")
+    @PutMapping("{idBloc}/{idFoyer}")
     public Bloc affecterBlocAFoyer(@PathVariable Long idBloc, @PathVariable Long idFoyer) {
         return blocService.affecterBlocAFoyer(idBloc, idFoyer);
     }
